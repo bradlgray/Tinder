@@ -23,28 +23,44 @@ class ViewController: UIViewController {
                 print(error)
             } else {
                 if let user = user {
-                    self.performSegueWithIdentifier("showSigninScreen", sender: self)
+                    
+                   
+                        
+                        if let interestedInWomen = user["interestedInWomen"] {
+                            self.performSegueWithIdentifier("logUserIn", sender: self)
+                        } else {
+                            self.performSegueWithIdentifier("showSigninScreen", sender: self)
+                        }
+                        
+                        
+                        
+                    }
                 }
-            }
+
+            
             
         })
+      
         
-        
-
-    
-    
-    
     }
-    
 
+    
+    
+    
+    
+    
     override func viewDidAppear(animated: Bool) {
-        
-               if let user = PFUser.currentUser()?.username {
-        
-        performSegueWithIdentifier("showSigninScreen", sender: self)
+        if let username = PFUser.currentUser()?.username {
+            if let interestedInWomen = PFUser.currentUser()?["interestedInWomen"] {
+                self.performSegueWithIdentifier("logUserIn", sender: self)
+            } else {
+                self.performSegueWithIdentifier("showSigninScreen", sender: self)
+            }
+
         }
     }
-   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
