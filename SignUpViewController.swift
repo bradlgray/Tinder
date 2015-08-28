@@ -57,7 +57,7 @@ class SignUpViewController: UITableViewController {
         
         super.viewDidLoad()
         
-        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, gender"])
+        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, gender, email"])
         
         graphRequest.startWithCompletionHandler( {
             
@@ -68,6 +68,8 @@ class SignUpViewController: UITableViewController {
             } else if let result = result {
                 PFUser.currentUser()?["gender"] = result["gender"]
                 PFUser.currentUser()?["name"] = result["name"]
+                PFUser.currentUser()?["email"] = result["email"]
+
                 
                 PFUser.currentUser()?.save()
                 

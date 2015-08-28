@@ -182,6 +182,11 @@
                                 <items>
                                     <navigationItem title="Tinder" id="XAZ-se-Fdj">
                                         <barButtonItem key="leftBarButtonItem" title="Log Out" id="ZEw-VP-Ixh"/>
+                                        <barButtonItem key="rightBarButtonItem" title="View Contacts" id="oxw-7z-lfJ">
+                                            <connections>
+                                                <segue destination="BLw-Yr-CSJ" kind="show" id="LWr-pR-Hls"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -222,10 +227,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKP-R1-5fl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="738" y="-415"/>
+            <point key="canvasLocation" x="984" y="-451"/>
+        </scene>
+        <!--Contacts View Controller-->
+        <scene sceneID="caP-XX-QQR">
+            <objects>
+                <tableViewController id="BLw-Yr-CSJ" customClass="ContactsViewController" customModule="ParseStarterProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xN8-vA-5Yg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cel" id="bij-BX-hlC">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bij-BX-hlC" id="0CX-Ss-gr0">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N3g-Th-T6M">
+                                            <rect key="frame" x="0.0" y="-1" width="600" height="44"/>
+                                            <items>
+                                                <navigationItem title="Title" id="PFu-hh-k2m">
+                                                    <barButtonItem key="leftBarButtonItem" title="Back" id="Coa-pb-4nL">
+                                                        <connections>
+                                                            <segue destination="hAG-aU-wcp" kind="show" id="u59-wX-dlZ"/>
+                                                        </connections>
+                                                    </barButtonItem>
+                                                </navigationItem>
+                                            </items>
+                                        </navigationBar>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BLw-Yr-CSJ" id="FRF-24-iBK"/>
+                            <outlet property="delegate" destination="BLw-Yr-CSJ" id="yel-qT-dJf"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CnU-Kp-WOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1705" y="-451"/>
         </scene>
     </scenes>
     <resources>
         <image name="signinwithfacebook.png" width="492" height="108"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="u59-wX-dlZ"/>
+    </inferredMetricsTieBreakers>
 </document>

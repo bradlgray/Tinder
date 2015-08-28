@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBAction func SignIn(sender: UIButton) {
    
         
-        let permissions = ["public_profile"]
+        let permissions = ["public_profile", "email"]
         
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions, block: {
             

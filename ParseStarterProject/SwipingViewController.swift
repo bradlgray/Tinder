@@ -42,14 +42,21 @@ class SwipingViewController: UIViewController {
         
         if gesture.state == UIGestureRecognizerState.Ended {
             
+            var acceptedorRejected = ""
+            
             if label.center.x < 100 {
-                print("not chosen")
+                acceptedorRejected = "rejected"
             } else if label.center.x > self.view.bounds.width - 100 {
-                print("chosen")
+                acceptedorRejected = "accepted"
             }
             
-            PFUser.currentUser()?.addUniqueObjectsFromArray([displayedUserId], forKey:"Accepted")
+            if acceptedorRejected != "" {
+                PFUser.currentUser()?.addUniqueObjectsFromArray([displayedUserId], forKey:acceptedorRejected)
 
+                PFUser.currentUser()?.save()
+            }
+            
+          
             
             rotation = CGAffineTransformMakeRotation(0)
             
@@ -69,6 +76,18 @@ class SwipingViewController: UIViewController {
     
     func updateImage() {
         var query = PFUser.query()!
+        
+        if let latitude = PFUser.currentUser()?["location"]!.latitude {
+            if let longitude = PFUser.currentUser()?["location"]!.longitude {
+                
+                 query.whereKey("location", withinGeoBoxFromSouthwest: PFGeoPoint(latitude: latitude - 1, longitude: longitude - 1), toNortheast:PFGeoPoint(latitude:latitude + 1, longitude: longitude + 1))
+            }
+        }
+        
+        
+        
+        
+        
         var interestedIn = "male"
         
         if PFUser.currentUser()!["interestedInWomen"]! as! Bool == true {
@@ -83,7 +102,27 @@ class SwipingViewController: UIViewController {
         }
         query.whereKey("gender", equalTo: interestedIn)
         query.whereKey("interestedInWomen", equalTo: isFemale)
-        query.limit = 1
+        
+        var ignoredUsers = [""]
+        
+        
+        if let acceptedUsers = PFUser.currentUser()?["accepted"] {
+            
+            ignoredUsers += acceptedUsers as! Array
+            
+                     }
+       
+        if let rejectedUsers = PFUser.currentUser()?["rejected"]{
+            
+            ignoredUsers += rejectedUsers as! Array
+            
+           
+        }
+        
+         query.whereKey("objecId", notContainedIn: ignoredUsers)
+    
+    
+    query.limit = 1
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             
@@ -120,53 +159,19 @@ class SwipingViewController: UIViewController {
         
         userImage.userInteractionEnabled = true
         
-        updateImage()
-
-      var query = PFUser.query()!
-        var interestedIn = "male"
-        
-        if PFUser.currentUser()!["interestedInWomen"]! as! Bool == true {
-            interestedIn = "female"
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
             
-        }
-        
-        var isFemale = true
-        
-        if PFUser.currentUser()?["gender"]! as! String == "male" {
-            isFemale = false
-        }
-        query.whereKey("gender", equalTo: interestedIn)
-        query.whereKey("interestedInWomen", equalTo: isFemale)
-        query.limit = 1
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            
-            if error != nil {
-                print(error)
-            } else if let objects = objects as? [PFObject] {
+            if let geoPoint = geoPoint {
+                PFUser.currentUser()?["location"] = geoPoint
+                PFUser.currentUser()?.save()
                 
-                for object in objects {
-                    
-                    self.displayedUserId = object.objectId!
-                    
-                    
-                    let imageFile = object["image"] as! PFFile
-                    
-                    imageFile.getDataInBackgroundWithBlock {
-                        (imageData: NSData?, error: NSError?) -> Void in
-                        
-                        if error != nil {
-                            print(error)
-                        } else {
-                            if let data = imageData {
-                                self.userImage.image = UIImage(data: data)
-                            }
-                        }
-                    }
-                }
             }
         }
-    }
+        
+        updateImage()
+
+         }
 
     override func didReceiveMemoryWarning() {
         

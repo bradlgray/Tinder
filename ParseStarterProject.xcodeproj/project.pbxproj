@@ -21,6 +21,7 @@
 		81BA81811A49E10C00E65899 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81801A49E10C00E65899 /* ParseUI.framework */; };
 		8F1E07971B8D5C2D008CF1C9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E07961B8D5C2D008CF1C9 /* SignUpViewController.swift */; };
 		8F1E07991B8D6B2A008CF1C9 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E07981B8D6B2A008CF1C9 /* SwipingViewController.swift */; };
+		8F9B52B71B9008240021542B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9B52B61B9008240021542B /* ContactsViewController.swift */; };
 		8FAD2A681B8BC60E008D0138 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FAD2A671B8BC60E008D0138 /* Launch Screen.storyboard */; };
 		8FAD2A6A1B8BC760008D0138 /* signinwithfacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FAD2A691B8BC760008D0138 /* signinwithfacebook.png */; };
 		8FAD2A711B8BD1C4008D0138 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAD2A6F1B8BD1C4008D0138 /* FBSDKCoreKit.framework */; };
@@ -46,6 +47,7 @@
 		81BA81821A49E27F00E65899 /* ParseStarterProject-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ParseStarterProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		8F1E07961B8D5C2D008CF1C9 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = ../SignUpViewController.swift; sourceTree = "<group>"; };
 		8F1E07981B8D6B2A008CF1C9 /* SwipingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
+		8F9B52B61B9008240021542B /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		8FAD2A671B8BC60E008D0138 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8FAD2A691B8BC760008D0138 /* signinwithfacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = signinwithfacebook.png; path = "../../Tinder-2/ParseStarterProject/signinwithfacebook.png"; sourceTree = "<group>"; };
 		8FAD2A6F1B8BD1C4008D0138 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				81BA814C1A49DA1800E65899 /* ViewController.swift */,
 				8F1E07961B8D5C2D008CF1C9 /* SignUpViewController.swift */,
 				8F1E07981B8D6B2A008CF1C9 /* SwipingViewController.swift */,
+				8F9B52B61B9008240021542B /* ContactsViewController.swift */,
 				81BA814E1A49DA1800E65899 /* Main.storyboard */,
 				8FAD2A671B8BC60E008D0138 /* Launch Screen.storyboard */,
 				81BA81511A49DA1800E65899 /* Images.xcassets */,
@@ -237,6 +240,7 @@
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				8F1E07991B8D6B2A008CF1C9 /* SwipingViewController.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
+				8F9B52B71B9008240021542B /* ContactsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
